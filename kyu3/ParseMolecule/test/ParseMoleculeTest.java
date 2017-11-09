@@ -38,6 +38,15 @@ public class ParseMoleculeTest {
                                                 "C6H12O6",
                                                 "glucose"},
                                                
+                                               {Arrays.asList("C","H","Fe","O"),
+                                                Arrays.asList( 8, 8, 1, 2 ),
+                                                "(C5H5)Fe(CO)2CH3",
+                                                "(Cyclopentadienyl)dicarbonylmethyliron"},
+                                               
+                                               {Arrays.asList("C", "H", "O"),
+                                                Arrays.asList( 6,   12,  6),
+                                                "As2{Be4C5[BCo3(CO2)3]2}4Cu5",
+                                                "glucose"},
                               });
     }
     
@@ -58,4 +67,9 @@ public class ParseMoleculeTest {
         System.out.println(expected);
         assertEquals(String.format("Should parse %s: %s", name, formula), expected, ParseMolecule.getAtoms(formula));
     }
+    
+//    @Test
+//    public void testIllegalArguments(){
+//        assertEquals(new IllegalArgumentException(), ParseMolecule.getAtoms("MgOH)2"));
+//    }
 }

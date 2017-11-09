@@ -10,12 +10,19 @@ class ParseMolecule {
         int bracketLocation=Math.max(Math.max(formula.indexOf('('), formula.indexOf('{')),formula.indexOf('['));
         while (bracketLocation!=-1) {            
             int start=bracketLocation;
-            int end=formula.lastIndexOf(opposite(formula.charAt(start)));
+            int end=formula.indexOf(opposite(formula.charAt(start)));
             if (end==-1) {
-                
+                throw new IllegalArgumentException();
             }
-            int repeat = Integer.parseInt(formula.charAt(end+1)+"");
+            int repeat = 1;
+            try {
+                repeat = Integer.parseInt(formula.charAt(end + 1) + "");
+            } catch (NumberFormatException numberFormatException) {
+            }
             String part=formula.substring(start+1, end);
+            if (repeat==1) {
+                end--;
+            }
             formula=formula.substring(0,start)+formula.substring(end+2);
             for (int i = 0; i < repeat; i++) {
                 formula=formula.substring(0, start)+part+formula.substring(start);
@@ -23,6 +30,9 @@ class ParseMolecule {
             bracketLocation=Math.max(Math.max(formula.indexOf('('), formula.indexOf('{')),formula.indexOf('['));
         }
         
+        if (formula.contains(")") || formula.contains("]") || formula.contains("}")) {
+            throw new IllegalArgumentException();
+        }
         
         
         //Get rid of numbers
