@@ -1,8 +1,6 @@
-
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.lang.IllegalArgumentException;
 
 class ParseMolecule {
 
@@ -36,41 +34,33 @@ class ParseMolecule {
             int repeat = numbers.nextInt();
             int numLocation = formula.indexOf(repeat + "");
             String elem = formula.substring(numLocation - 1, numLocation);
-            if (Character.isLowerCase(elem.charAt(0))) {
+            if (Character.isLowerCase(elem.charAt(0)))
                 elem = formula.substring(numLocation - 2, numLocation);
-            }
             formula = formula.substring(0, numLocation - elem.length()) + formula.substring(numLocation + (repeat + "").length());
-            for (int i = 0; i < repeat; i++) {
+            for (int i = 0; i < repeat; i++)
                 formula = formula.substring(0, numLocation - elem.length()) + elem + formula.substring(numLocation - elem.length());
-            }
         }
 
         //Check for non-elements
         Scanner check = new Scanner(formula).useDelimiter("[A-Z]");
-        while (check.hasNext()) {
-            if (check.next().length() > 1) {
+        while (check.hasNext())
+            if (check.next().length() > 1)
                 throw new IllegalArgumentException();
-            }
-        }
 
-        //Put spaces between elements
-        for (int i = 0; i < formula.length(); i++) {
-            if (Character.isUpperCase(formula.charAt(i))) {
-                formula = formula.substring(0, i) + " " + formula.substring(i);
-                i++;
-            }
-        }
+        //Put spaces between elements (Before uppercase lettters)
+        for (int i = 0; i < formula.length(); i++)
+            if (Character.isUpperCase(formula.charAt(i)))
+                formula = formula.substring(0, i) + " " + formula.substring(i++);
 
         //CountLetters
-        Map<String, Integer> map = new HashMap<String, Integer>();
+        Map<String, Integer> map = new HashMap<>();
         Scanner elem = new Scanner(formula);
         while (elem.hasNext()) {
             String element = elem.next();
-            if (map.containsKey(element)) {
+            if (map.containsKey(element))
                 map.put(element, map.get(element) + 1);
-            } else {
+            else 
                 map.put(element, 1);
-            }
         }
 
         return map;
@@ -78,12 +68,9 @@ class ParseMolecule {
 
     private static char opposite(char charAt) {
         switch (charAt) {
-            case '{':
-                return '}';
-            case '[':
-                return ']';
-            default:
-                return ')';
+            case '{':   return '}';
+            case '[':   return ']';
+            default :   return ')';
         }
     }
 }
