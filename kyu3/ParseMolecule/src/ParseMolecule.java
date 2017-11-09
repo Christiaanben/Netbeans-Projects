@@ -19,8 +19,9 @@ class ParseMolecule {
         }
         
         //Get rid of numbers
-        while (formula.matches(".*\\d+.*")) {            
-            System.out.println("found");
+        if (formula.matches(".*\\d+.*")) {            
+            int numLocation = formula.indexOf(".*\\d+.*");
+            System.out.println(numLocation);
         }
         
         return new HashMap<String,Integer>();
