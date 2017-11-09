@@ -15,7 +15,7 @@ public class ParseMoleculeTest {
     public static Collection<Object[]> data() {
         return Arrays.asList( new Object[][] { {Arrays.asList("H", "O"),
                                                 Arrays.asList( 2,   1 ),
-                                                "(H)2O",
+                                                "{((H)2)[O]}",
                                                 "waterSpecial"},
                                                 
                                                 {Arrays.asList("H", "O"),
@@ -43,10 +43,12 @@ public class ParseMoleculeTest {
                                                 "(C5H5)Fe(CO)2CH3",
                                                 "(Cyclopentadienyl)dicarbonylmethyliron"},
                                                
-                                               {Arrays.asList("C", "H", "O"),
-                                                Arrays.asList( 6,   12,  6),
+                                               {Arrays.asList("As", "Be", "C", "B","Co","O","Cu"),
+                                                Arrays.asList( 2,   16,  44, 8, 24, 48, 5),
                                                 "As2{Be4C5[BCo3(CO2)3]2}4Cu5",
-                                                "glucose"},
+                                                "Unknown Molecule"},
+                                               
+                                               
                               });
     }
     
