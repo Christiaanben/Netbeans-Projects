@@ -1,5 +1,7 @@
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Scanner;
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 
 class ParseMolecule {
     
@@ -19,10 +21,21 @@ class ParseMolecule {
         }
         
         //Get rid of numbers
-        if (formula.matches(".*\\d+.*")) {            
-            int numLocation = formula.indexOf(".*\\d+.*");
+        Scanner numbers=new Scanner(formula).useDelimiter("\\D+");
+        while (numbers.hasNextInt()) {
+            int repeat=numbers.nextInt();
+            int numLocation = formula.indexOf(repeat+"");
             System.out.println(numLocation);
+            String elem=formula.substring(numLocation-1, numLocation);
+            if (Character.isLowerCase(elem.charAt(0))) 
+                elem=formula.substring(numLocation-2, numLocation);
+            formula=formula.substring(0,numLocation-elem.length())+formula.substring(numLocation+1);
+            for (int i = 0; i < repeat; i++) {
+                formula=formula.substring(0, numLocation-1)+elem+formula.substring(numLocation-1);
+            }
         }
+        
+        
         
         return new HashMap<String,Integer>();
     }
