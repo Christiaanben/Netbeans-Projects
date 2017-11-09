@@ -32,6 +32,12 @@ public class ParseMoleculeTest {
                                                 Arrays.asList( 4,   14,  2,   4 ),
                                                 "K4[ON(SO3)2]2",
                                                 "Fremy's salt"},
+                                               
+                                               {Arrays.asList("C", "H", "O"),
+                                                Arrays.asList( 6,   12,  6),
+                                                "C6H12O6",
+                                                "glucose"},
+                                               
                               });
     }
     
