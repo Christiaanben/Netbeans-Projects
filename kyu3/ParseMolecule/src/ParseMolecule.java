@@ -6,7 +6,6 @@ class ParseMolecule {
 
     public static Map<String, Integer> getAtoms(String formula) throws IllegalArgumentException {
         //Get rid of brackets
-        System.out.println("");
         int bracketLocation = Math.max(Math.max(formula.lastIndexOf('('), formula.lastIndexOf('{')), formula.lastIndexOf('['));
         while (bracketLocation != -1) {
             int start = bracketLocation;
@@ -26,13 +25,6 @@ class ParseMolecule {
             }
             bracketLocation = Math.max(Math.max(formula.lastIndexOf('('), formula.lastIndexOf('{')), formula.lastIndexOf('['));
         }
-        
-        
-        
-        
-        asdfknm;k;
-        
-        a;lsdkfj;
         
         if (formula.contains(")") || formula.contains("]") || formula.contains("}"))
             throw new IllegalArgumentException();
