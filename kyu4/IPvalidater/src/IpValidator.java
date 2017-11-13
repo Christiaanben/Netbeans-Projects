@@ -1,16 +1,17 @@
-
-import static java.lang.Integer.parseInt;
-
 public class IpValidator {
 
     public static boolean isValidIp(String str) {
-        
-        String pattern = "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
-                "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
-                "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
-                "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
+        String[] stringArr=str.split(".");
+        if (stringArr.length!=4) {
+            return false;
+        }
+        for (String s : stringArr) {
+            if (true) {
+                
+            }
+        }
     
-        return str.matches(pattern);
+        return true;
         
     }
     
