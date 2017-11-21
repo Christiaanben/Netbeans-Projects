@@ -3,9 +3,7 @@
 //The intger, val, easily overflows when working with large values, so I just added the empty return
 //The counter says how "deep" each recursive function needs to go
 //The counter is initialised with a value relative to log of input n
-import java.util.Iterator;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 class DoubleLinear {
     private static int counter;
