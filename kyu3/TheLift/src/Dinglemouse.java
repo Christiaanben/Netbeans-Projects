@@ -1,6 +1,5 @@
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class Dinglemouse {
 
@@ -9,15 +8,17 @@ public class Dinglemouse {
         ArrayList<Integer> stop = new ArrayList<>();
         boolean direction = true; //True up, False down
         int floor = 0;
+        stop.add(floor);
         ArrayList<Integer> lift=new ArrayList<>();
         
         //Lift starts algorithm
-        while (!isEmpty(queues)) {
+        while (!isEmpty(queues) || !lift.isEmpty()) {
             //Remove people that want to be at this floor
-            while (lift.contains(floor)) {
-                if (stop.get(stop.size()-1)!=floor)
-                    stop.add(floor);
-                lift.remove(floor);
+            if (lift.contains(floor)) {
+                stop.add(floor);
+                ArrayList<Integer> rem=new ArrayList<>();
+                rem.add(floor);
+                lift.removeAll(rem);
             }
             
             //Add people that want to go in direction (if there's space)
@@ -43,6 +44,9 @@ public class Dinglemouse {
             //Go to next floor
             floor = (direction)? floor+1 : floor-1;
         }
+        floor=0;
+        if (stop.get(stop.size()-1)!=floor)
+            stop.add(floor);
         
         //Create array from list
         return stop.stream().mapToInt(i->i).toArray();
