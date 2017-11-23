@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Bennie
- */
 public class Dinglemouse {
-    
+
+  public static int[] theLift(final int[][] queues, final int capacity) {
+    // Your code here
+    return new int[0];
+  }
+
 }
