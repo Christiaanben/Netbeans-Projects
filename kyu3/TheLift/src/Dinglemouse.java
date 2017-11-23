@@ -1,8 +1,7 @@
-
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Dinglemouse {
-
     public static int[] theLift(final int[][] queues, final int capacity) {
         //Initialize lift
         ArrayList<Integer> stop = new ArrayList<>();
@@ -11,14 +10,11 @@ public class Dinglemouse {
         stop.add(floor);
         ArrayList<Integer> lift=new ArrayList<>();
         
-        //Lift starts algorithm
         while (!isEmpty(queues) || !lift.isEmpty()) {
             //Remove people that want to be at this floor
             if (lift.contains(floor)) {
                 stop.add(floor);
-                ArrayList<Integer> rem=new ArrayList<>();
-                rem.add(floor);
-                lift.removeAll(rem);
+                lift.removeAll(new ArrayList<>(Arrays.asList(floor)));
             }
             
             //Add people that want to go in direction (if there's space)
@@ -35,15 +31,16 @@ public class Dinglemouse {
             queues[floor]=newFloor.stream().mapToInt(i->i).toArray();
             
             //If at end turn around
-            if (direction && floor==queues.length-1) {
+            if (direction && floor==queues.length-1)
                 direction=false;
-            }else if (!direction && floor==0) {
+            else if (!direction && floor==0)
                 direction=true;
-            }
             
             //Go to next floor
             floor = (direction)? floor+1 : floor-1;
         }
+        
+        //End at ground floor
         floor=0;
         if (stop.get(stop.size()-1)!=floor)
             stop.add(floor);
@@ -54,11 +51,9 @@ public class Dinglemouse {
     }
 
     private static boolean isEmpty(int[][] queues) {
-        for (int i = 0; i < queues.length; i++) {
-            if (queues[i].length!=0) {
+        for (int[] queue : queues)
+            if (queue.length != 0)
                 return false;
-            }            
-        }
         return true;
     }
 
