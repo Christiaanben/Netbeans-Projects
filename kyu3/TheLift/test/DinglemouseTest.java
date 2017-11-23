@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 public class DinglemouseTest {
 
   @Test
-  public void testUp() {
+  public void test1Up() {
     final int[][] queues = {
       new int[0], // G
       new int[0], // 1
@@ -19,7 +19,7 @@ public class DinglemouseTest {
   }
   
   @Test
-  public void testDown() {
+  public void test2Down() {
     final int[][] queues = {
       new int[0], // G
       new int[0], // 1
@@ -34,7 +34,7 @@ public class DinglemouseTest {
   }
   
   @Test
-  public void testUpAndUp() {
+  public void test3UpAndUp() {
     final int[][] queues = {
       new int[0], // G
       new int[]{3}, // 1
@@ -49,7 +49,7 @@ public class DinglemouseTest {
   }
 
   @Test
-  public void testDownAndDown() {
+  public void test4DownAndDown() {
     final int[][] queues = {
       new int[0], // G
       new int[]{0}, // 1
