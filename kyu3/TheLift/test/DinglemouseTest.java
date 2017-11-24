@@ -62,5 +62,34 @@ public class DinglemouseTest {
     final int[] result = Dinglemouse.theLift(queues,5);
     assertArrayEquals(new int[]{0,5,4,3,2,1,0}, result);
   }
+  
+  @Test
+  public void test5UpAndUp() {
+    final int[][] queues = {
+      new int[]{3}, // G
+      new int[]{2}, // 1
+      new int[]{0}, // 2
+      new int[]{2}, // 3
+      new int[0], // 4
+      new int[0], // 5
+      new int[]{5}, // 6
+    };
+    final int[] result = Dinglemouse.theLift(queues,5);
+    assertArrayEquals(new int[]{0,1,2,3,6,5,3,2,0}, result);
+  }
 
+  @Test
+  public void test6FireDrill() {
+    final int[][] queues = {
+      new int[]{}, // G
+      new int[]{0,0,0,0}, // 1
+      new int[]{0,0,0,0}, // 2
+      new int[]{0,0,0,0}, // 3
+      new int[]{0,0,0,0}, // 4
+      new int[]{0,0,0,0}, // 5
+      new int[]{0,0,0,0}, // 6
+    };
+    final int[] result = Dinglemouse.theLift(queues,5);
+    assertArrayEquals(new int[]{0,6,5,4,3,2,1,0,5,4,3,2,1,0,4,3,2,1,0,3,2,1,0,1,0}, result);
+  }
 }
