@@ -11,9 +11,24 @@ public class IntPart {
 
     public static String part(int n) {
         SortedSet<Integer> set=partProd(n);
+        ArrayList<Integer> list=new ArrayList<>();
+        list.addAll(set);
+        
         int range=set.last()-1;
+        
         double avg=0;
-        double med=0;
+        for (Integer l : list) {
+            avg+=l;
+        }
+        avg/=list.size();
+        
+        double med;
+        if (list.size()%2==0) {
+            med=(list.get(list.size()/2)+list.get(list.size()/2-1))/2;
+        }else{
+            med=list.get(list.size()/2);
+        }
+        System.out.println(set);
         String str=String.format("Range: %d Average: %.2f Median: %.2f", range,avg,med);
         System.out.println(str);
         return str;
@@ -29,9 +44,12 @@ public class IntPart {
         if (n==4)
             return new TreeSet<>(Arrays.asList(4,3,2,1));
         TreeSet<Integer> set = new TreeSet<>();
-        set.add(n--);
-        set.add((n-1)*1);
-        set.addAll(Arrays.asList((n-2)*2,(n-2)*1*1));
+        for (int i = 0; i < n; i++) {
+            TreeSet<Integer> auxSet=partProd(i);
+            for (Integer aux: auxSet) {
+                set.add((n-i)*aux);
+            }
+        }
         return set;
     }
 }
